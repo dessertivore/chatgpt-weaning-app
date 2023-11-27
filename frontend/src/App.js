@@ -1,5 +1,7 @@
 import { useState } from "react"
 import './App.css'
+import Typewriter from 'typewriter-effect';
+
 
 
 const ChatbotApp = () => {
@@ -7,11 +9,11 @@ const ChatbotApp = () => {
     age: "",
     dietary_req: "",
   });
-  const [response, setResponse] = useState(""); // Use setResponse to update the response state
+  const [response, setResponse] = useState("Loading"); // Use setResponse to update the response state
+  const [typewriterkey, setTypewriterKey] = useState(0); // Add a key for remounting the Typewriter
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       const response = await fetch("http://127.0.0.1:8000/weaningbot", {
         method: "POST",
@@ -29,6 +31,7 @@ const ChatbotApp = () => {
       const dataFromServer = await response.json();
       // Update the state with the response data
       setResponse(dataFromServer);
+      setTypewriterKey((prevKey) => prevKey + 1); // Increment the key to remount the Typewriter
     } catch (error) {
       console.error("There was a problem with the fetch operation:", error);
     }
@@ -61,7 +64,20 @@ const ChatbotApp = () => {
           </button>
           <br />
           <div id = "mealplan">Meal plan:
-          {response}
+          
+          <Typewriter key = {typewriterkey}
+            onInit={(typewriter) => {
+              typewriter.typeString(String(response))
+              .callFunction(() => {
+                console.log('String typed out!');
+              })
+              .pauseFor(2500)
+              .callFunction(() => {
+                console.log('All strings were deleted');
+              })
+              .start();
+             }}
+            />
           </div>
         </form>
       </div>

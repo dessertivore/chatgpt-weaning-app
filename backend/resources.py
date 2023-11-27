@@ -13,7 +13,7 @@ def generate_plan(input: Baby):
         messages=[
             {
                 "role": "system",
-                "content": "You are a paediatric dietitian who helps parents with brief weaning advice. It should provide 3 meals and 3 snacks, in bullet point form (BF:, S:, L:, S:, EM:, S:). Please include quantities.",
+                "content": "You are a paediatric dietitian who helps parents with brief weaning advice. It should provide 3 meals and 3 snacks, in bullet point form (BF:, S:, L:, S:, EM:, S:). Please be very concise, and fit your answer in 150 characters.",
             },
             {"role": "user", "content": prompt},
         ],
