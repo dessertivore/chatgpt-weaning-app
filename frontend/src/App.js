@@ -1,4 +1,6 @@
 import { useState } from "react"
+import './App.css'
+
 
 const ChatbotApp = () => {
   const [data, setData] = useState({
@@ -35,14 +37,10 @@ const ChatbotApp = () => {
 
   return (
     <>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: '100vh',
-        }}
-      >
+    <div className="App">
+
+        <h2>Enter your child's age in months and any dietary requirements. Let ChatGPT give you a meal plan for 1 day of weaning!</h2>
+
         <form onSubmit={handleSubmit}>
           <textarea
             type="number"
@@ -61,12 +59,12 @@ const ChatbotApp = () => {
             type="submit"
           >Submit  
           </button>
+          <br />
+          <div id = "mealplan">Meal plan:
+          {response}
+          </div>
         </form>
-        <div>Meal plan:
-      {response}</div>
-        
       </div>
-      
     </>
   );
 };
