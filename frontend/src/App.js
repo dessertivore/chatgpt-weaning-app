@@ -43,7 +43,8 @@ const ChatbotApp = () => {
     <div className="App">
 
         <h2>Enter your child's age in months and any dietary requirements. Let ChatGPT give you a meal plan for 1 day of weaning!</h2>
-
+        <body>This is to showcase my ability to use OpenAI - please consult a paediatric dietitian for advice regarding your child.</body>
+        <br />
         <form onSubmit={handleSubmit}>
           <textarea
             type="number"
